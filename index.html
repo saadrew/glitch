@@ -3,315 +3,367 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Glitch Store</title>
+  <title>Glitch Store - متجر ديسكورد الاحترافي</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
     body {
       margin: 0;
-      background: #0d0d0d;
-      color: #eee;
       font-family: 'Share Tech Mono', monospace;
+      background: #0f0f0f;
+      color: #eee;
       direction: rtl;
-      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-
-    /* Glitch Text Effect */
-    .glitch {
-      position: relative;
-      color: #fff;
-      font-size: 3rem;
-      font-weight: bold;
-      animation: glitchAnim 1.5s infinite;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      right: 0;
-      opacity: 0.8;
-      clip: rect(0, 900px, 0, 0);
-    }
-
-    .glitch::before {
-      animation: glitchAnimTop 1.5s infinite;
-      color: #f0f;
-      z-index: -1;
-      left: 2px;
-      text-shadow: -2px 0 #0ff;
-    }
-
-    .glitch::after {
-      animation: glitchAnimBottom 1.5s infinite;
-      color: #0ff;
-      z-index: -2;
-      left: -2px;
-      text-shadow: 2px 0 #f0f;
-    }
-
-    @keyframes glitchAnim {
-      0% {
-        text-shadow: 2px 2px #f0f, -2px -2px #0ff;
-      }
-      20% {
-        text-shadow: -2px -2px #f0f, 2px 2px #0ff;
-      }
-      40% {
-        text-shadow: 2px -2px #0ff, -2px 2px #f0f;
-      }
-      60% {
-        text-shadow: -2px 2px #0ff, 2px -2px #f0f;
-      }
-      80% {
-        text-shadow: 2px 2px #f0f, -2px -2px #0ff;
-      }
-      100% {
-        text-shadow: -2px -2px #f0f, 2px 2px #0ff;
-      }
-    }
-
-    @keyframes glitchAnimTop {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-      10% {
-        clip: rect(0, 9999px, 30px, 0);
-        transform: translate(-2px, -2px);
-      }
-      20% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      30% {
-        clip: rect(0, 9999px, 30px, 0);
-        transform: translate(2px, 2px);
-      }
-      40% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-    }
-
-    @keyframes glitchAnimBottom {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-      10% {
-        clip: rect(30px, 9999px, 60px, 0);
-        transform: translate(2px, 2px);
-      }
-      20% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      30% {
-        clip: rect(30px, 9999px, 60px, 0);
-        transform: translate(-2px, -2px);
-      }
-      40% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: translate(0);
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-    }
-
     header {
-      background: linear-gradient(90deg, #8e2de2, #4a00e0);
-      padding: 1rem 2rem;
-      text-align: center;
-      box-shadow: 0 0 20px #8e2de2;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 1.1rem;
-      position: relative;
-    }
-
-    nav a::after {
-      content: '';
-      display: block;
-      width: 0%;
-      height: 2px;
-      background: #0ff;
-      transition: width 0.3s;
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 1rem;
-      background: #111;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #0ff;
-    }
-
-    h2 {
-      text-align: center;
-      color: #0ff;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 8px #0ff;
-    }
-
-    .plans {
+      background: #121212;
+      padding: 15px 30px;
       display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ff00c8;
+      user-select: none;
     }
-
-    .plan {
-      background: #222;
-      padding: 1.5rem;
-      border-radius: 10px;
-      width: 260px;
-      box-shadow: 0 0 10px #8e2de2;
-      transition: transform 0.3s, box-shadow 0.3s;
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ff00c8;
+      letter-spacing: 2px;
     }
-
-    .plan:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 20px #f0f;
-    }
-
-    .plan h3 {
-      margin-top: 0;
-      color: #f0f;
-      font-size: 1.5rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 8px #f0f;
-    }
-
-    .plan p {
-      color: #ccc;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    .price {
-      font-weight: bold;
-      font-size: 1.2rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #0ff;
-      text-shadow: 0 0 5px #0ff;
-    }
-
-    .btn {
-      display: block;
-      background: #0ff;
-      color: #111;
-      font-weight: bold;
-      text-align: center;
-      padding: 0.75rem;
-      border-radius: 25px;
+    nav a {
+      color: #eee;
+      margin-left: 25px;
       text-decoration: none;
-      transition: background 0.3s;
-      margin: 0 auto;
-      width: 120px;
-      box-shadow: 0 0 10px #0ff;
+      font-weight: 600;
+      transition: color 0.3s ease;
     }
-
-    .btn:hover {
-      background: #f0f;
-      color: #222;
-      box-shadow: 0 0 15px #f0f;
+    nav a:hover {
+      color: #ff00c8;
     }
-
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 50px 20px;
+      border: 2px solid #ff00c8;
+      border-radius: 15px;
+      background: #1a1a1a;
+      box-shadow: 0 0 25px #ff00c8;
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      margin-bottom: 15px;
+      font-size: 2.8rem;
+      color: #00fff7;
+      letter-spacing: 1.5px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    h2 {
+      color: #ff00c8;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ff00c8;
+      padding-bottom: 8px;
+      user-select: none;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+    .product-card {
+      background: #1f1f1f;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px #ff00c8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+    .product-card h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #00fff7;
+      font-size: 1.6rem;
+      user-select: text;
+    }
+    .product-description {
+      color: #ccc;
+      flex-grow: 1;
+      margin-bottom: 20px;
+      user-select: text;
+    }
+    .product-price {
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #ff00c8;
+      user-select: text;
+    }
+    .product-price a {
+      color: #ff00c8;
+      text-decoration: underline;
+    }
+    .buy-btn {
+      background: #ff00c8;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      color: #111;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      transition: background 0.3s ease, color 0.3s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+    .buy-btn:hover {
+      background: #00fff7;
+      color: #111;
+      box-shadow: 0 0 20px #00fff7;
+    }
+    #features {
+      margin-bottom: 40px;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 20px;
+    }
+    .feature-item {
+      background: #121212;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 20px #ff00c8;
+      user-select: text;
+      font-size: 1.1rem;
+    }
+    #reviews {
+      margin-bottom: 40px;
+    }
+    .review {
+      background: #1a1a1a;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #00fff7;
+      user-select: text;
+    }
+    .review p {
+      font-style: italic;
+      margin: 0 0 10px 0;
+    }
+    .review .author {
+      text-align: left;
+      font-weight: 700;
+      color: #ff00c8;
+    }
+    #contact {
+      text-align: center;
+      margin-bottom: 40px;
+      user-select: text;
+    }
+    #contact p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    #contact .btn {
+      background: #ff00c8;
+      color: #111;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 12px;
+      margin: 10px 10px 0 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      transition: background 0.3s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+    #contact .btn:hover {
+      background: #00fff7;
+      color: #111;
+      box-shadow: 0 0 30px #00fff7;
+    }
     footer {
       text-align: center;
-      padding: 1rem;
-      margin-top: 3rem;
-      color: #555;
-      font-size: 0.9rem;
+      padding: 20px 0;
+      font-size: 1.1rem;
+      color: #888;
+      background: #111;
+      user-select: none;
+      border-top: 1px solid #333;
     }
-
-    @media (max-width: 700px) {
-      .plans {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      nav a {
-        margin: 0 10px;
-        font-size: 1rem;
-      }
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 11000;
+      user-select: none;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal {
+      background: #121212;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 90%;
+      padding: 25px 35px 40px;
+      box-shadow: 0 0 30px #ff00c8;
+      text-align: center;
+      position: relative;
+      color: #eee;
+      font-family: 'Share Tech Mono', monospace;
+    }
+    .modal h3 {
+      margin-bottom: 20px;
+      color: #00fff7;
+    }
+    .modal p {
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      color: #ccc;
+    }
+    .modal button.close-btn {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: #ff00c8;
+      cursor: pointer;
+      font-weight: 900;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    .modal button.close-btn:hover {
+      color: #00fff7;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="glitch" data-text="Glitch Store">Glitch Store</div>
-    <nav>
-      <a href="#home">الرئيسية</a>
-      <a href="#plans">الباقات</a>
-      <a href="#contact">تواصل معنا</a>
-    </nav>
-  </header>
-
-  <section id="home">
-    <h2>مرحباً بك في متجر Glitch Store</h2>
-    <p style="text-align:center; color:#ccc; font-size:1.1rem;">
-      نقدم لك أفضل خدمات ديسكورد بتصميم عصري وتأثيرات رقمية.
-    </p>
+<header>
+  <div class="logo">Glitch Store</div>
+  <nav>
+    <a href="#products">الباقات</a>
+    <a href="#features">المميزات</a>
+    <a href="#reviews">التقييمات</a>
+    <a href="#contact">تواصل معنا</a>
+  </nav>
+</header>
+<main class="container">
+  <section class="hero" id="home">
+    <h1>مرحبا بك في Glitch Store</h1>
+    <p>أفضل متجر ديسكورد يوفر لك نيترو، بوست، نسخ سيرفرات، وتأثيرات بستايل جليتش حديث وعصري.</p>
   </section>
-
-  <section id="plans">
-    <h2>الباقات المتوفرة</h2>
-    <div class="plans">
-      <div class="plan">
-        <h3>باقة المبتدئين</h3>
-        <p>تنظيم سيرفر بسيط + بوت ترحيب</p>
-        <div class="price">50 ريال</div>
-        <a class="btn" href="https://wa.me/966500000000?text=مرحباً، أود شراء باقة المبتدئين من Glitch Store" target="_blank">اشترِ الآن</a>
+  <section id="products">
+    <h2>الباقات المتاحة</h2>
+    <div class="products-grid">
+      <div class="product-card" data-product="nitro">
+        <h3>نيترو ديكسورد</h3>
+        <p class="product-description">اشتري نيترو الديسكورد بأحدث العروض.</p>
+        <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
+        <button class="buy-btn" data-product="nitro">اشتري الآن</button>
       </div>
-      <div class="plan">
-        <h3>باقة المحترفين</h3>
-        <p>تنظيم احترافي + 3 بوتات + صلاحيات</p>
-        <div class="price">150 ريال</div>
-        <a class="btn" href="https://wa.me/966500000000?text=مرحباً، أود شراء باقة المحترفين من Glitch Store" target="_blank">اشترِ الآن</a>
+      <div class="product-card" data-product="boost">
+        <h3>بوست سيرفر</h3>
+        <p class="product-description">عزز سيرفرك ببوستات مميزة وقوية.</p>
+        <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
+        <button class="buy-btn" data-product="boost">اشتري الآن</button>
       </div>
-      <div class="plan">
-        <h3>باقة الشركات</h3>
-        <p>تصميم سيرفر كامل + نظام تذاكر + دعم شهري</p>
-        <div class="price">300 ريال</div>
-        <a class="btn" href="https://wa.me/966500000000?text=مرحباً، أود شراء باقة الشركات من Glitch Store" target="_blank">اشترِ الآن</a>
+      <div class="product-card" data-product="server-copies">
+        <h3>نسخ سيرفرات</h3>
+        <p class="product-description">انسخ سيرفرك المفضل بسرعة وأمان.</p>
+        <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
+        <button class="buy-btn" data-product="server-copies">اشتري الآن</button>
+      </div>
+      <div class="product-card" data-product="effects">
+        <h3>إفكتات مميزة</h3>
+        <p class="product-description">أضف تأثيرات خاصة لسيرفرك أو حسابك.</p>
+        <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
+        <button class="buy-btn" data-product="effects">اشتري الآن</button>
       </div>
     </div>
   </section>
-
+  <section id="features">
+    <h2>مميزات Glitch Store</h2>
+    <div class="feature-list">
+      <div class="feature-item"><strong>دعم مباشر عبر ديسكورد:</strong> تواصل مع فريقنا بسهولة في أي وقت.</div>
+      <div class="feature-item"><strong>تحديثات مستمرة:</strong> دائماً نطور خدماتنا لتلبية طلباتكم.</div>
+      <div class="feature-item"><strong>طرق دفع متنوعة:</strong> اختر الطريقة المناسبة لك بسهولة وأمان.</div>
+      <div class="feature-item"><strong>سرعة التنفيذ:</strong> خدماتنا سريعة جداً مع ضمان الجودة.</div>
+      <div class="feature-item"><strong>واجهة مستخدم عصرية:</strong> تصميم حديث وجذاب لسهولة الاستخدام.</div>
+      <div class="feature-item"><strong>خصوصية وأمان:</strong> نحرص على حماية بياناتك بالكامل.</div>
+    </div>
+  </section>
+  <section id="reviews">
+    <h2>آراء العملاء</h2>
+    <div class="review">
+      <p>"اشتريت نيترو من Glitch Store وكانت التجربة ممتازة، دعم سريع وأسعار مناسبة."</p>
+      <div class="author">- أحمد</div>
+    </div>
+    <div class="review">
+      <p>"بوست السيرفر وصل بسرعة وأداء ممتاز، أنصح بشدة."</p>
+      <div class="author">- سارة</div>
+    </div>
+    <div class="review">
+      <p>"خدمة نسخ السيرفرات من أفضل الخدمات اللي جربتها، شكراً لكم."</p>
+      <div class="author">- محمد</div>
+    </div>
+  </section>
   <section id="contact">
     <h2>تواصل معنا</h2>
-    <p style="text-align:center; color:#ccc; font-size:1.1rem;">
-      لأي استفسار أو طلب مخصص، تواصل معنا عبر واتساب:
-    </p>
-    <p style="text-align:center;">
-      <a class="btn" href="https://wa.me/966500000000" target="_blank">أرسل رسالة</a>
-    </p>
+    <p>للاستفسارات وطلبات الشراء، تواصل معنا عبر الديسكورد أو الإيميل:</p>
+    <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" class="btn" rel="noopener noreferrer">ديسكورد</a>
+    <a href="mailto:glitchstore@example.com" class="btn">إيميل</a>
   </section>
-
-  <footer>
-    &copy; 2025 Glitch Store. جميع الحقوق محفوظة.
-  </footer>
-
+</main>
+<footer>
+  جميع الحقوق محفوظة © 2025 Glitch Store
+</footer>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <button class="close-btn" id="modalClose">&times;</button>
+    <h3>للطلب</h3>
+    <p>للحصول على الأسعار وشراء الخدمة، يرجى التواصل معنا عبر الديسكورد.</p>
+    <p><a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">انقر هنا للانضمام إلى ديسكوردنا</a></p>
+  </div>
+</div>
+<script>
+  const buyButtons = document.querySelectorAll('.buy-btn');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalClose = document.getElementById('modalClose');
+  buyButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      modalOverlay.classList.add('active');
+    });
+  });
+  modalClose.addEventListener('click', () => {
+    modalOverlay.classList.remove('active');
+  });
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) {
+      modalOverlay.classList.remove('active');
+    }
+  });
+</script>
 </body>
 </html>
