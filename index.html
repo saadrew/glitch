@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glitch Store</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      color: #eee;
+      font-family: 'Share Tech Mono', monospace;
+      direction: rtl;
+      overflow-x: hidden;
+    }
+
+    /* Glitch Text Effect */
+    .glitch {
+      position: relative;
+      color: #fff;
+      font-size: 3rem;
+      font-weight: bold;
+      animation: glitchAnim 1.5s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      right: 0;
+      opacity: 0.8;
+      clip: rect(0, 900px, 0, 0);
+    }
+
+    .glitch::before {
+      animation: glitchAnimTop 1.5s infinite;
+      color: #f0f;
+      z-index: -1;
+      left: 2px;
+      text-shadow: -2px 0 #0ff;
+    }
+
+    .glitch::after {
+      animation: glitchAnimBottom 1.5s infinite;
+      color: #0ff;
+      z-index: -2;
+      left: -2px;
+      text-shadow: 2px 0 #f0f;
+    }
+
+    @keyframes glitchAnim {
+      0% {
+        text-shadow: 2px 2px #f0f, -2px -2px #0ff;
+      }
+      20% {
+        text-shadow: -2px -2px #f0f, 2px 2px #0ff;
+      }
+      40% {
+        text-shadow: 2px -2px #0ff, -2px 2px #f0f;
+      }
+      60% {
+        text-shadow: -2px 2px #0ff, 2px -2px #f0f;
+      }
+      80% {
+        text-shadow: 2px 2px #f0f, -2px -2px #0ff;
+      }
+      100% {
+        text-shadow: -2px -2px #f0f, 2px 2px #0ff;
+      }
+    }
+
+    @keyframes glitchAnimTop {
+      0% {
+        clip: rect(0, 9999px, 0, 0);
+      }
+      10% {
+        clip: rect(0, 9999px, 30px, 0);
+        transform: translate(-2px, -2px);
+      }
+      20% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      30% {
+        clip: rect(0, 9999px, 30px, 0);
+        transform: translate(2px, 2px);
+      }
+      40% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      100% {
+        clip: rect(0, 9999px, 0, 0);
+      }
+    }
+
+    @keyframes glitchAnimBottom {
+      0% {
+        clip: rect(0, 9999px, 0, 0);
+      }
+      10% {
+        clip: rect(30px, 9999px, 60px, 0);
+        transform: translate(2px, 2px);
+      }
+      20% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      30% {
+        clip: rect(30px, 9999px, 60px, 0);
+        transform: translate(-2px, -2px);
+      }
+      40% {
+        clip: rect(0, 9999px, 0, 0);
+        transform: translate(0);
+      }
+      100% {
+        clip: rect(0, 9999px, 0, 0);
+      }
+    }
+
+    header {
+      background: linear-gradient(90deg, #8e2de2, #4a00e0);
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 0 20px #8e2de2;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 2px;
+      background: #0ff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 1rem;
+      background: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    h2 {
+      text-align: center;
+      color: #0ff;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px #0ff;
+    }
+
+    .plans {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .plan {
+      background: #222;
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: 260px;
+      box-shadow: 0 0 10px #8e2de2;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .plan:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #f0f;
+    }
+
+    .plan h3 {
+      margin-top: 0;
+      color: #f0f;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 8px #f0f;
+    }
+
+    .plan p {
+      color: #ccc;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    .btn {
+      display: block;
+      background: #0ff;
+      color: #111;
+      font-weight: bold;
+      text-align: center;
+      padding: 0.75rem;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background 0.3s;
+      margin: 0 auto;
+      width: 120px;
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    .btn:hover {
+      background: #f0f;
+      color: #222;
+      box-shadow: 0 0 15px #f0f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 700px) {
+      .plans {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="glitch" data-text="Glitch Store">Glitch Store</div>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#plans">الباقات</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h2>مرحباً بك في متجر Glitch Store</h2>
+    <p style="text-align:center; color:#ccc; font-size:1.1rem;">
+      نقدم لك أفضل خدمات ديسكورد بتصميم عصري وتأثيرات رقمية.
+    </p>
+  </section>
+
+  <section id="plans">
+    <h2>الباقات المتوفرة</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>باقة المبتدئين</h3>
+        <p>تنظيم سيرفر بسيط + بوت ترحيب</p>
+        <div class="price">50 ريال</div>
+        <a class="btn" href="https://wa.me/966500000000?text=مرحباً، أود شراء باقة المبتدئين من Glitch Store" target="_blank">اشترِ الآن</a>
+      </div>
+      <div class="plan">
+        <h3>باقة المحترفين</h3>
+        <p>تنظيم احترافي + 3 بوتات + صلاحيات</p>
+        <div class="price">150 ريال</div>
+        <a class="btn" href="https://wa.me/966500000000?text=مرحباً، أود شراء باقة المحترفين من Glitch Store" target="_blank">اشترِ الآن</a>
+      </div>
+      <div class="plan">
+        <h3>باقة الشركات</h3>
+        <p>تصميم سيرفر كامل + نظام تذاكر + دعم شهري</p>
+        <div class="price">300 ريال</div>
+        <a class="btn" href="https://wa.me/966500000000?text=مرحباً، أود شراء باقة الشركات من Glitch Store" target="_blank">اشترِ الآن</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>تواصل معنا</h2>
+    <p style="text-align:center; color:#ccc; font-size:1.1rem;">
+      لأي استفسار أو طلب مخصص، تواصل معنا عبر واتساب:
+    </p>
+    <p style="text-align:center;">
+      <a class="btn" href="https://wa.me/966500000000" target="_blank">أرسل رسالة</a>
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Glitch Store. جميع الحقوق محفوظة.
+  </footer>
+
+</body>
+</html>
