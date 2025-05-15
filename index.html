@@ -1,369 +1,452 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Glitch Store - متجر ديسكورد الاحترافي</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-    body {
-      margin: 0;
-      font-family: 'Share Tech Mono', monospace;
-      background: #0f0f0f;
-      color: #eee;
-      direction: rtl;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    header {
-      background: #121212;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #ff00c8;
-      user-select: none;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #ff00c8;
-      letter-spacing: 2px;
-    }
-    nav a {
-      color: #eee;
-      margin-left: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #ff00c8;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-    .hero {
-      text-align: center;
-      padding: 50px 20px;
-      border: 2px solid #ff00c8;
-      border-radius: 15px;
-      background: #1a1a1a;
-      box-shadow: 0 0 25px #ff00c8;
-      margin-bottom: 40px;
-    }
-    .hero h1 {
-      margin-bottom: 15px;
-      font-size: 2.8rem;
-      color: #00fff7;
-      letter-spacing: 1.5px;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-    h2 {
-      color: #ff00c8;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #ff00c8;
-      padding-bottom: 8px;
-      user-select: none;
-    }
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
-    .product-card {
-      background: #1f1f1f;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px #ff00c8;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      user-select: none;
-      transition: transform 0.3s ease;
-    }
-    .product-card:hover {
-      transform: translateY(-8px);
-    }
-    .product-card h3 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      color: #00fff7;
-      font-size: 1.6rem;
-      user-select: text;
-    }
-    .product-description {
-      color: #ccc;
-      flex-grow: 1;
-      margin-bottom: 20px;
-      user-select: text;
-    }
-    .product-price {
-      margin-bottom: 15px;
-      font-weight: 600;
-      color: #ff00c8;
-      user-select: text;
-    }
-    .product-price a {
-      color: #ff00c8;
-      text-decoration: underline;
-    }
-    .buy-btn {
-      background: #ff00c8;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      color: #111;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Share Tech Mono', monospace;
-      transition: background 0.3s ease, color 0.3s ease;
-      user-select: none;
-      text-decoration: none;
-    }
-    .buy-btn:hover {
-      background: #00fff7;
-      color: #111;
-      box-shadow: 0 0 20px #00fff7;
-    }
-    #features {
-      margin-bottom: 40px;
-    }
-    .feature-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 20px;
-    }
-    .feature-item {
-      background: #121212;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 20px #ff00c8;
-      user-select: text;
-      font-size: 1.1rem;
-    }
-    #reviews {
-      margin-bottom: 40px;
-    }
-    .review {
-      background: #1a1a1a;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px #00fff7;
-      user-select: text;
-    }
-    .review p {
-      font-style: italic;
-      margin: 0 0 10px 0;
-    }
-    .review .author {
-      text-align: left;
-      font-weight: 700;
-      color: #ff00c8;
-    }
-    #contact {
-      text-align: center;
-      margin-bottom: 40px;
-      user-select: text;
-    }
-    #contact p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-      color: #ccc;
-    }
-    #contact .btn {
-      background: #ff00c8;
-      color: #111;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 12px;
-      margin: 10px 10px 0 10px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: 'Share Tech Mono', monospace;
-      transition: background 0.3s ease;
-      user-select: none;
-      text-decoration: none;
-    }
-    #contact .btn:hover {
-      background: #00fff7;
-      color: #111;
-      box-shadow: 0 0 30px #00fff7;
-    }
-    footer {
-      text-align: center;
-      padding: 20px 0;
-      font-size: 1.1rem;
-      color: #888;
-      background: #111;
-      user-select: none;
-      border-top: 1px solid #333;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glitch Store - متجر ديسكورد الاحترافي</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Cairo', 'Share Tech Mono', monospace, sans-serif;
+    background: linear-gradient(135deg, #23272a 0%, #7289da 100%);
+    color: #e3e5e8;
+    direction: rtl;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  header {
+    background: rgba(54,57,63,0.95);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #5865f2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    user-select: none;
+  }
+  .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #5865f2;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #5865f2;
+  }
+  nav a {
+    color: #e3e5e8;
+    margin-left: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -6px;
+    right: 0;
+    background-color: #5865f2;
+    transition: width 0.3s;
+  }
+  nav a:hover {
+    color: #5865f2;
+  }
+  nav a:hover::after {
+    width: 100%;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+  }
+  .hero {
+    text-align: center;
+    padding: 60px 30px;
+    border-radius: 20px;
+    background: rgba(54,57,63,0.85);
+    box-shadow: 0 0 40px #5865f2;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 120px; height: 120px;
+    background: url('https://cdn-icons-png.flaticon.com/512/2111/2111370.png') no-repeat center/contain;
+    opacity: 0.2;
+    filter: drop-shadow(0 0 6px #5865f2);
+    border-radius: 50%;
+  }
+  .hero h1 {
+    margin-bottom: 20px;
+    font-size: 3rem;
+    color: #00b0f4;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px #00b0f4;
+  }
+  .hero p {
+    font-size: 1.3rem;
+    color: #cfd8dc;
+    max-width: 700px;
+    margin: 0 auto;
+    user-select: text;
+  }
+  h2 {
+    color: #5865f2;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #5865f2;
+    padding-bottom: 10px;
+    user-select: none;
+    font-size: 2rem;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  .product-card {
+    background: #2c2f33;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 0 25px #7289da;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    user-select: none;
+  }
+  .product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px #00b0f4;
+  }
+  .product-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #00b0f4;
+    font-size: 1.8rem;
+    user-select: text;
+    text-shadow: 0 0 10px #00b0f4;
+  }
+  .product-description {
+    color: #b0bec5;
+    flex-grow: 1;
+    margin-bottom: 25px;
+    user-select: text;
+    font-size: 1.1rem;
+  }
+  .product-price {
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #ff79c6;
+    user-select: text;
+    font-size: 1.2rem;
+  }
+  .product-price a {
+    color: #ff79c6;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  .product-price a:hover {
+    color: #f1c40f;
+  }
+  .buy-btn {
+    background: linear-gradient(135deg, #ff79c6, #00b0f4);
+    border: none;
+    padding: 14px 0;
+    border-radius: 15px;
+    color: #121212;
+    font-weight: 900;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+    user-select: none;
+    box-shadow: 0 0 15px #ff79c6;
+  }
+  .buy-btn:hover {
+    background: linear-gradient(135deg, #00b0f4, #ff79c6);
+    box-shadow: 0 0 30px #00b0f4;
+    color: #fff;
+  }
+  #features {
+    margin-bottom: 60px;
+  }
+  .feature-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 25px;
+  }
+  .feature-item {
+    background: #23272a;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 0 30px #5865f2;
+    font-size: 1.15rem;
+    user-select: text;
+    color: #cfd8dc;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+  .feature-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px #00b0f4;
+  }
+  #reviews {
+    margin-bottom: 60px;
+  }
+  .review {
+    background: #2c2f33;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #00b0f4;
+    user-select: text;
+    font-size: 1.1rem;
+    color: #cfd8dc;
+    font-style: italic;
+  }
+  .review .author {
+    text-align: left;
+    font-weight: 700;
+    color: #ff79c6;
+    margin-top: 12px;
+    font-style: normal;
+    font-size: 1rem;
+  }
+  #contact {
+    text-align: center;
+    margin-bottom: 60px;
+    user-select: text;
+    color: #cfd8dc;
+  }
+  #contact p {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+  }
+  #contact .btn {
+    background: #5865f2;
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 25px;
+    margin: 10px 15px 0 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    box-shadow: 0 0 20px #5865f2;
+    display: inline-block;
+  }
+  #contact .btn:hover {
+    background: #00b0f4;
+    box-shadow: 0 0 40px #00b0f4;
+    color: #121212;
+  }
+  footer {
+    text-align: center;
+    padding: 25px 0;
+    font-size: 1.1rem;
+    color: #8a8f98;
+    background: #1c1f26;
+    user-select: none;
+    border-top: 1px solid #444;
+    letter-spacing: 0.5px;
+  }
+    /* Modal Styles */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 11000;
-      user-select: none;
-    }
-    .modal-overlay.active {
-      display: flex;
-    }
-    .modal {
-      background: #121212;
-      border-radius: 20px;
-      max-width: 400px;
-      width: 90%;
-      padding: 25px 35px 40px;
-      box-shadow: 0 0 30px #ff00c8;
-      text-align: center;
-      position: relative;
-      color: #eee;
-      font-family: 'Share Tech Mono', monospace;
-    }
-    .modal h3 {
-      margin-bottom: 20px;
-      color: #00fff7;
-    }
-    .modal p {
-      margin-bottom: 25px;
-      font-size: 1.1rem;
-      line-height: 1.4;
-      color: #ccc;
-    }
-    .modal button.close-btn {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: none;
-      border: none;
-      font-size: 1.6rem;
-      color: #ff00c8;
-      cursor: pointer;
-      font-weight: 900;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-    .modal button.close-btn:hover {
-      color: #00fff7;
-    }
-  </style>
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+  }
+  .modal-overlay.active {
+    display: flex;
+  }
+  .modal {
+    background: #2c2f33;
+    border-radius: 20px;
+    padding: 30px 40px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 40px #5865f2;
+    text-align: center;
+    color: #e3e5e8;
+    user-select: none;
+  }
+  .modal h3 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #ff79c6;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px #ff79c6;
+  }
+  .modal p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+  }
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: transparent;
+    border: none;
+    font-size: 2.5rem;
+    color: #ff79c6;
+    cursor: pointer;
+    font-weight: 900;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  .close-btn:hover {
+    color: #f1c40f;
+  }
+</style>
 </head>
 <body>
 <header>
   <div class="logo">Glitch Store</div>
   <nav>
-    <a href="#products">الباقات</a>
-    <a href="#features">المميزات</a>
-    <a href="#reviews">التقييمات</a>
+    <a href="#products">المنتجات</a>
+    <a href="#features">لماذا تختارنا؟</a>
+    <a href="#reviews">تقييمات العملاء</a>
     <a href="#contact">تواصل معنا</a>
   </nav>
 </header>
+
 <main class="container">
-  <section class="hero" id="home">
-    <h1>مرحبا بك في Glitch Store</h1>
-    <p>أفضل متجر ديسكورد يوفر لك نيترو، بوست، نسخ سيرفرات، وتأثيرات بستايل جليتش حديث وعصري.</p>
+  <section class="hero">
+    <h1>مرحباً بكم في Glitch Store</h1>
+    <p>أفضل متجر ديسكورد لشراء التأثيرات، الباقات، والمنتجات الرقمية بأعلى جودة وأفضل دعم فني.</p>
   </section>
+
   <section id="products">
-    <h2>الباقات المتاحة</h2>
+    <h2>منتجاتنا</h2>
     <div class="products-grid">
-      <div class="product-card" data-product="nitro">
-        <h3>نيترو ديكسورد</h3>
-        <p class="product-description">اشتري نيترو الديسكورد بأحدث العروض.</p>
+      <div class="product-card">
+        <h3>نيترو ديسكورد</h3>
+        <p class="product-description">احصل على نيترو ديسكورد الأصلي بأفضل الأسعار لتجربة مميزة ومميزات حصرية.</p>
         <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
-        <button class="buy-btn" data-product="nitro">اشتري الآن</button>
+        <button class="buy-btn" data-product="نيترو ديسكورد">اشتري الآن</button>
       </div>
-      <div class="product-card" data-product="boost">
-        <h3>بوست سيرفر</h3>
-        <p class="product-description">عزز سيرفرك ببوستات مميزة وقوية.</p>
+      <div class="product-card">
+        <h3>بوستات مميزة</h3>
+        <p class="product-description">بوستات احترافية وجذابة لتعزيز حساباتك على وسائل التواصل.</p>
         <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
-        <button class="buy-btn" data-product="boost">اشتري الآن</button>
+        <button class="buy-btn" data-product="بوستات مميزة">اشتري الآن</button>
       </div>
-      <div class="product-card" data-product="server-copies">
-        <h3>نسخ سيرفرات</h3>
-        <p class="product-description">انسخ سيرفرك المفضل بسرعة وأمان.</p>
+      <div class="product-card">
+        <h3>نسخ سيرفر ديسكورد</h3>
+        <p class="product-description">نسخ كاملة لسيرفرات ديسكورد جاهزة مع كل الإعدادات والقنوات.</p>
         <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
-        <button class="buy-btn" data-product="server-copies">اشتري الآن</button>
+        <button class="buy-btn" data-product="نسخ سيرفر ديسكورد">اشتري الآن</button>
       </div>
-      <div class="product-card" data-product="effects">
-        <h3>إفكتات مميزة</h3>
-        <p class="product-description">أضف تأثيرات خاصة لسيرفرك أو حسابك.</p>
+      <div class="product-card">
+        <h3>بوتات ديسكورد</h3>
+        <p class="product-description">بوتات مخصصة ومتطورة لإدارة سيرفرك وزيادة التفاعل.</p>
         <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
-        <button class="buy-btn" data-product="effects">اشتري الآن</button>
+        <button class="buy-btn" data-product="بوتات ديسكورد">اشتري الآن</button>
+      </div>
+      <div class="product-card">
+        <h3>افكتات بروفايل</h3>
+        <p class="product-description">تأثيرات احترافية لصور البروفايل تميز حسابك عن الآخرين.</p>
+        <p class="product-price">للسعر تواصل عبر <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">ديسكوردنا</a></p>
+        <button class="buy-btn" data-product="افكتات بروفايل">اشتري الآن</button>
       </div>
     </div>
   </section>
+  
+
   <section id="features">
-    <h2>مميزات Glitch Store</h2>
+    <h2>لماذا تختارنا؟</h2>
     <div class="feature-list">
-      <div class="feature-item"><strong>دعم مباشر عبر ديسكورد:</strong> تواصل مع فريقنا بسهولة في أي وقت.</div>
-      <div class="feature-item"><strong>تحديثات مستمرة:</strong> دائماً نطور خدماتنا لتلبية طلباتكم.</div>
-      <div class="feature-item"><strong>طرق دفع متنوعة:</strong> اختر الطريقة المناسبة لك بسهولة وأمان.</div>
-      <div class="feature-item"><strong>سرعة التنفيذ:</strong> خدماتنا سريعة جداً مع ضمان الجودة.</div>
-      <div class="feature-item"><strong>واجهة مستخدم عصرية:</strong> تصميم حديث وجذاب لسهولة الاستخدام.</div>
-      <div class="feature-item"><strong>خصوصية وأمان:</strong> نحرص على حماية بياناتك بالكامل.</div>
+      <div class="feature-item">✔️ ضمان جودة 100% في جميع المنتجات</div>
+      <div class="feature-item">✔️ دعم فني سريع واحترافي عبر ديسكورد</div>
+      <div class="feature-item">✔️ عروض مستمرة بأسعار تنافسية</div>
+      <div class="feature-item">✔️ طرق دفع آمنة ومتعددة</div>
+      <div class="feature-item">✔️ تحديثات دورية للمنتجات والباقات</div>
+      <div class="feature-item">✔️ واجهة مستخدم سهلة وودودة</div>
     </div>
   </section>
+
   <section id="reviews">
-    <h2>آراء العملاء</h2>
-    <div class="review">
-      <p>"اشتريت نيترو من Glitch Store وكانت التجربة ممتازة، دعم سريع وأسعار مناسبة."</p>
-      <div class="author">- أحمد</div>
-    </div>
-    <div class="review">
-      <p>"بوست السيرفر وصل بسرعة وأداء ممتاز، أنصح بشدة."</p>
-      <div class="author">- سارة</div>
-    </div>
-    <div class="review">
-      <p>"خدمة نسخ السيرفرات من أفضل الخدمات اللي جربتها، شكراً لكم."</p>
-      <div class="author">- محمد</div>
-    </div>
+    <h2>تقييمات العملاء</h2>
+    <div class="review">"أفضل متجر ديسكورد تعاملت معه، سريع، آمن وأسعاره ممتازة!"<div class="author">- أحمد</div></div>
+    <div class="review">"الدعم الفني متعاون جدًا، أنصح الجميع بالتعامل معهم."<div class="author">- فاطمة</div></div>
+    <div class="review">"جودة المنتجات لا يعلى عليها، تجربة ممتازة بكل المقاييس."<div class="author">- يوسف</div></div>
   </section>
+
   <section id="contact">
     <h2>تواصل معنا</h2>
-    <p>للاستفسارات وطلبات الشراء، تواصل معنا عبر الديسكورد أو الإيميل:</p>
-    <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" class="btn" rel="noopener noreferrer">ديسكورد</a>
-    <a href="mailto:glitchstore@example.com" class="btn">إيميل</a>
+    <p>للحصول على مزيد من المعلومات أو طلب الدعم، تواصل معنا عبر:</p>
+    <a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer" class="btn">ديسكورد</a>
+    <a href="mailto:contact@glitchstore.com" class="btn">البريد الإلكتروني</a>
   </section>
 </main>
-<footer>
-  جميع الحقوق محفوظة © 2025 Glitch Store
-</footer>
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modal">
-    <button class="close-btn" id="modalClose">&times;</button>
-    <h3>للطلب</h3>
-    <p>للحصول على الأسعار وشراء الخدمة، يرجى التواصل معنا عبر الديسكورد.</p>
-    <p><a href="https://discord.gg/ayr2zs2Hs8" target="_blank" rel="noopener noreferrer">انقر هنا للانضمام إلى ديسكوردنا</a></p>
+
+<footer>جميع الحقوق محفوظة &copy; 2025 Glitch Store</footer>
+
+<!-- Modal Structure -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="close-btn" id="modal-close">&times;</button>
+    <h3>تنبيه</h3>
+    <p id="modal-message">سيتم توجيهك لصفحة الشراء الآن.</p>
   </div>
 </div>
+
 <script>
+  // عند الضغط على زر الشراء، يظهر مودال ثم يوجه المستخدم لديسكورد
   const buyButtons = document.querySelectorAll('.buy-btn');
-  const modalOverlay = document.getElementById('modalOverlay');
-  const modalClose = document.getElementById('modalClose');
-  buyButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      modalOverlay.classList.add('active');
+  const modal = document.getElementById('modal');
+  const modalMessage = document.getElementById('modal-message');
+  const modalClose = document.getElementById('modal-close');
+
+  buyButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const product = btn.dataset.product;
+      modalMessage.textContent = `لشراء ${product}، سيتم توجيهك لصفحة ديسكورد الآن.`;
+      modal.classList.add('active');
+
+      // توجيه المستخدم بعد 3 ثواني
+      setTimeout(() => {
+        window.open('https://discord.gg/ayr2zs2Hs8', '_blank');
+        modal.classList.remove('active');
+      }, 3000);
     });
   });
+
   modalClose.addEventListener('click', () => {
-    modalOverlay.classList.remove('active');
+    modal.classList.remove('active');
   });
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) {
-      modalOverlay.classList.remove('active');
+
+  modal.addEventListener('click', (e) => {
+    if(e.target === modal){
+      modal.classList.remove('active');
     }
   });
 </script>
 </body>
 </html>
+
